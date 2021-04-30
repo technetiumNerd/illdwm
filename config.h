@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -73,6 +74,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_red, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *raisevol[] = { "amixer", "sset", "Master", "2db+" };
+static const char *lowervol[] = { "amixer", "sset", "Master", "2db-" };
+static const char *mute[]     = { "amixer", "sset", "Master", "toggle" };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -111,6 +115,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { 0,                         XF86XK_AudioRaiseVolume, spawn,   {.v = raisevol } },
+    { 0,                         XF86XK_AudioLowerVolume, spawn,   {.v = lowervol } },
+    { 0,                         XF86XK_AudioMute, spawn,     {.v = mute } },
 };
 
 /* button definitions */
