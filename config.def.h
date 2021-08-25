@@ -74,15 +74,17 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_red, "-sf", col_gray4, NULL };
 static const char *termcmd[]        = { "st", NULL };
-static const char *raisevol[]       = { "amixer", "sset", "Master", "2%+" };
-static const char *lowervol[]       = { "amixer", "sset", "Master", "2%-" };
+static const char *raisevol[]       = { "amixer", "-c", "0", "sset", "Master", "1db+" };
+static const char *lowervol[]       = { "amixer", "-c", "0", "sset", "Master", "1db-" };
 static const char *mute[]           = { "amixer", "sset", "Master", "toggle" };
-static const char *playpause[]      = { "mpc", "toggle" };
-static const char *alsaHeadphone[]  = { "amixer", "-c", "0", "cset", "name='Analog Output'", "'FP Headphones'" };
-static const char *alsaSpeaker[]    = { "amixer", "-c", "0", "cset", "name='Analog Output'", "'Speakers'" };
+static const char *alsaHeadphone[]  = { "amixer", "-c", "0", "cset", "name=Analog Output", "FP Headphones" };
+static const char *alsaSpeaker[]    = { "amixer", "-c", "0", "cset", "name=Analog Output", "Speakers" };
+//static const char *playpause[]      = { "mpc", "toggle" };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+//    { 0,                         XF86XK_AudioPlay, spawn,     {.v = playpause } },
+    { 0,                         XF86XK_AudioPlay, spawn,     SHCMD("mpc toggle") },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -118,12 +120,11 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { MODKEY|ShiftMask,             XK_f,       spawn,        {.v = alsaHeadphone } },
+    { MODKEY|ShiftMask,             XK_s,       spawn,        {.v = alsaSpeaker } },
     { 0,                         XF86XK_AudioRaiseVolume, spawn,   {.v = raisevol } },
     { 0,                         XF86XK_AudioLowerVolume, spawn,   {.v = lowervol } },
     { 0,                         XF86XK_AudioMute, spawn,     {.v = mute } },
-    { 0,                         XF86XK_AudioPlay, spawn,     {.v = playpause } },
-    { MODKEY|ShiftMask,             XK_f,       spawn,        {.v = alsaHeadphone } },
-    { MODKEY|ShiftMask,             XK_s,       spawn,        {.v = alsaSpeaker } },
 };
 
 /* button definitions */
