@@ -80,8 +80,6 @@ static const char *mute[]           = { "amixer", "sset", "Master", "toggle" };
 static const char *playpause[]      = { "mpc", "toggle" };
 static const char *alsaHeadphone[]  = { "amixer", "-c", "0", "cset", "name='Analog Output'", "'FP Headphones'" };
 static const char *alsaSpeaker[]    = { "amixer", "-c", "0", "cset", "name='Analog Output'", "'Speakers'" };
-static const char *alsaHeadphone[]  = { "amixer", "-c", "0", "cset", "name='Analog Output'", "'FP Headphones'" };
-static const char *alsaSpeaker[]    = { "amixer", "-c", "0", "cset", "name='Analog Output'", "'Speakers'" };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -124,8 +122,6 @@ static Key keys[] = {
     { 0,                         XF86XK_AudioLowerVolume, spawn,   {.v = lowervol } },
     { 0,                         XF86XK_AudioMute, spawn,     {.v = mute } },
     { 0,                         XF86XK_AudioPlay, spawn,     {.v = playpause } },
-    { MODKEY|ShiftMask,             XK_f,       spawn,        {.v = alsaHeadphone } },
-    { MODKEY|ShiftMask,             XK_s,       spawn,        {.v = alsaSpeaker } },
     { MODKEY|ShiftMask,             XK_f,       spawn,        {.v = alsaHeadphone } },
     { MODKEY|ShiftMask,             XK_s,       spawn,        {.v = alsaSpeaker } },
 };
