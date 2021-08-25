@@ -78,8 +78,11 @@ static const char *raisevol[]       = { "amixer", "sset", "Master", "2%+" };
 static const char *lowervol[]       = { "amixer", "sset", "Master", "2%-" };
 static const char *mute[]           = { "amixer", "sset", "Master", "toggle" };
 static const char *playpause[]      = { "mpc", "toggle" };
+<<<<<<< HEAD
 static const char *alsaHeadphone[]  = { "amixer", "-c", "0", "cset", "name='Analog Output'", "'FP Headphones'" };
 static const char *alsaSpeaker[]    = { "amixer", "-c", "0", "cset", "name='Analog Output'", "'Speakers'" };
+=======
+>>>>>>> b6d697b (config ...)
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -122,8 +125,11 @@ static Key keys[] = {
     { 0,                         XF86XK_AudioLowerVolume, spawn,   {.v = lowervol } },
     { 0,                         XF86XK_AudioMute, spawn,     {.v = mute } },
     { 0,                         XF86XK_AudioPlay, spawn,     {.v = playpause } },
+<<<<<<< HEAD
     { MODKEY|ShiftMask,             XK_f,       spawn,        {.v = alsaHeadphone } },
     { MODKEY|ShiftMask,             XK_s,       spawn,        {.v = alsaSpeaker } },
+=======
+>>>>>>> b6d697b (config ...)
 };
 
 /* button definitions */
